@@ -1,27 +1,20 @@
 function login() {
 
-    alert("teste");
-
     var email = $("#email").val();
-    var senha = $("#password").val();
+    var password = $("#password").val();
 
-    $.post("./model/model_login.php", {
-        email : email,
-        senha : senha
-    },
-    function(dados) {
-        /*if(dados == 0) {
-            $('#loginErrorLogin').css('visibility','visible');
-            $('#inputEmailLogin').keyup(function (){
-            $('#loginErrorLogin').css('visibility','hidden');
-            });
-            $('#inputPasswordLogin').keyup(function (){
-            $('#loginErrorLogin').css('visibility','hidden');
-            });
+    $.ajax({
+        url: "./model/model_login.php",
+        type: "post",
+        dataType: "json",
+        data: {email: email, password: password},
+        success: function(response) {
+            if(response.retorno == true) {
+                console.log(response.retorno);
+            }
+            else {
+                console.log(response.retorno);
+            }
         }
-        else {
-            window.history.back();
-        }*/
-        console.log(dados);
-    });
+    })
 }
